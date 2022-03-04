@@ -84,7 +84,45 @@ body {
   padding: 10px;
 }
 
+button {
+  background: rgb(199, 199, 199);
+  min-height: 50px;
+  font-size: 20px;
+  font-weight: 100;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(110%);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:focus {
+  outline: none;
+}
+
+.operator {
+  background: grey;
+  color: #fff;
+  font-size: 30px;
+}
+
+.clear {
+  background: rgb(255, 40, 40);
+  color: #fff;
+}
+
+.clear:hover {
+  filter: brightness(90%);
+}
+
 .equal-sign {
+  background: rgb(13, 206, 87);
   grid-column: -2;
   grid-row: 2 / span 4;
 }
