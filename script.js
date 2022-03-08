@@ -9,6 +9,13 @@ function sendNumbeValue(number) {
     calculatorDisplay.textContent = displayValue === '0' ? number : displayValue + number 
 }
 
+// Add 1 decimal point in the number
+function addDecimal() {
+    if(!calculatorDisplay.textContent.includes('.')) {
+        calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`
+    }
+}
+
 // Add Eventlisnters for numbers, operatoros, & decimals buttons
 inputBtns.forEach((inputBtn) => {
     if(inputBtn.classList.length === 0) {
@@ -16,7 +23,7 @@ inputBtns.forEach((inputBtn) => {
     } else if(inputBtn.classList.contains('operator')) {
         inputBtn.addEventListener('click', () => sendNumbeValue(inputBtn.value))
     } else if(inputBtn.classList.contains('decimal')) {
-        inputBtn.addEventListener('click', () => sendNumbeValue(inputBtn.value))
+        inputBtn.addEventListener('click', () => addDecimal())
     }
 })
 
