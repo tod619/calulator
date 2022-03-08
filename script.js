@@ -29,21 +29,36 @@ function addDecimal() {
     }
 }
 
+// Calculate first and second values depending on operator
+const calculate = {
+    '/': (firstNumber, secondNumber) => firstNumber / secondNumber,
+    '*': (firstNumber, secondNumber) => firstNumber * secondNumber,
+    '+': (firstNumber, secondNumber) => firstNumber + secondNumber,
+    '-': (firstNumber, secondNumber) => firstNumber - secondNumber,
+    '=': (firstNumber, secondNumber) => secondNumber,
+}
+
 // Use operator
 function useOperator(operator) {
+    // Prevent multiple operators
+    if(operatorValue && awaitingNextValue) {
+        operatorValue = operator
+        return
+    } 
     const currentValue = Number(calculatorDisplay.textContent)
     // Assign currentValue to firstValue if firstValue has no value
     if(!firstValue) {
         firstValue = currentValue
-    }else {}
+    }else {
+        const caluclation = calculate[operatorValue](firstValue, currentValue)
+        
+        calculatorDisplay.textContent = caluclation
+        firstValue = caluclation
+    }
 
     // Ready for the next value
-    awaitingNextValue = true
-
-    
+    awaitingNextValue = true    
     operatorValue = operator
-
-
 }
 
 // Add Eventlisnters for numbers, operatoros, & decimals buttons
