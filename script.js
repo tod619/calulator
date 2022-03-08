@@ -19,3 +19,10 @@ inputBtns.forEach((inputBtn) => {
         inputBtn.addEventListener('click', () => sendNumbeValue(inputBtn.value))
     }
 })
+
+// Reset the value in the display
+function resetAll() {
+    calculatorDisplay.textContent = '0'
+}
+
+clearBtn.addEventListener('click', resetAll)
