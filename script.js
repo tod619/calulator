@@ -2,6 +2,15 @@ const calculatorDisplay = document.querySelector('h1')
 const inputBtns = document.querySelectorAll('button')
 const clearBtn = document.getElementById('clear-btn')
 
+// Calculate first and second values depending on operator
+const calculate = {
+    '/': (firstNumber, secondNumber) => firstNumber / secondNumber,
+    '*': (firstNumber, secondNumber) => firstNumber * secondNumber,
+    '+': (firstNumber, secondNumber) => firstNumber + secondNumber,
+    '-': (firstNumber, secondNumber) => firstNumber - secondNumber,
+    '=': (firstNumber, secondNumber) => secondNumber,
+}
+
 let firstValue = 0
 let operatorValue = ''
 let awaitingNextValue = false 
@@ -29,15 +38,6 @@ function addDecimal() {
     }
 }
 
-// Calculate first and second values depending on operator
-const calculate = {
-    '/': (firstNumber, secondNumber) => firstNumber / secondNumber,
-    '*': (firstNumber, secondNumber) => firstNumber * secondNumber,
-    '+': (firstNumber, secondNumber) => firstNumber + secondNumber,
-    '-': (firstNumber, secondNumber) => firstNumber - secondNumber,
-    '=': (firstNumber, secondNumber) => secondNumber,
-}
-
 // Use operator
 function useOperator(operator) {
     // Prevent multiple operators
@@ -61,7 +61,17 @@ function useOperator(operator) {
     operatorValue = operator
 }
 
-// Add Eventlisnters for numbers, operatoros, & decimals buttons
+// Reset the value in the display + all other values
+function resetAll() {
+    firstValue = 0
+    operatorValue = ''
+    awaitingNextValue = false
+    calculatorDisplay.textContent = '0'
+    
+}
+
+// Add Eventlisnters 
+// Eventlistner for numbers, operatoros, & decimals buttons
 inputBtns.forEach((inputBtn) => {
     if(inputBtn.classList.length === 0) {
         inputBtn.addEventListener('click', () => sendNumbeValue(inputBtn.value))
@@ -72,13 +82,5 @@ inputBtns.forEach((inputBtn) => {
     }
 })
 
-// Reset the value in the display + all other values
-function resetAll() {
-    firstValue = 0
-    operatorValue = ''
-    awaitingNextValue = false
-    calculatorDisplay.textContent = '0'
-    
-}
-
+// Eventlistner for clear btn
 clearBtn.addEventListener('click', resetAll)
